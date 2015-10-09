@@ -38,27 +38,26 @@ def levenshtein_distance(word1, word2, del_cost, ins_cost, sub_cost):
     return d[m, n]
 
 
-def find_closest_word(string, dictionary):
+def find_closest_word(string, dictionary, del_cost, ins_cost, sub_cost):
     distances = [1000] * len(dictionary)
     for i in range(len(dictionary)):
-        distances[i] = levenshtein_distance(string, dictionary[i], 1, 1, 1)
+        distances[i] = levenshtein_distance(string, dictionary[i], del_cost, ins_cost, sub_cost)
     val, idx = min((val, idx) for (idx, val) in enumerate(distances))
     return dictionary[idx]
 
 
-def main():
+def spellcheck():
+
     to_check, dictionary = get_args()
     to_check = parse_txt(to_check)
     dictionary = parse_txt(dictionary)
 
     correct_words = [0] * len(to_check)
-    for i, word in enumerate(to_check):
-        word = find_closest_word(word, dictionary)
-        correct_words[i] = word
+    for j, word in enumerate(to_check):
+        correction = find_closest_word(word, dictionary)
+        correct_words[j] = correction
 
     f = open('corrected.txt', 'w')
     for word in correct_words:
         f.write("%s " % word)
     f.close()
-
-main()
