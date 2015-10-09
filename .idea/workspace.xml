@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9c0dff3-2823-40f9-95c1-b96aafd91788" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Rohan\Documents\GitHub\Edit-Distance\functions.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spellcheck.py" afterPath="$PROJECT_DIR$/spellcheck.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hour_test.py" afterPath="$PROJECT_DIR$/hour_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qwerty.py" afterPath="$PROJECT_DIR$/qwerty.py" />
     </list>
     <ignored path="Edit-Distance.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/spellcheck.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="26" />
+              <caret line="37" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -37,14 +36,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="measure_error.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="measure_error.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/measure_error.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.23674911">
-              <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/hour_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="65" />
+              <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -61,12 +58,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qwerty.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="qwerty.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qwerty.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.7791519">
+              <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,10 +88,10 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/functions.py" />
         <option value="$PROJECT_DIR$/qwerty_cost.py" />
-        <option value="$PROJECT_DIR$/qwerty.py" />
         <option value="$PROJECT_DIR$/measure_error.py" />
         <option value="$PROJECT_DIR$/spellcheck.py" />
         <option value="$PROJECT_DIR$/hour_test.py" />
+        <option value="$PROJECT_DIR$/qwerty.py" />
       </list>
     </option>
   </component>
@@ -342,10 +341,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwerty.py">
+    <entry file="file://$PROJECT_DIR$/measure_error.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <caret line="0" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -353,7 +352,7 @@
     <entry file="file://$PROJECT_DIR$/spellcheck.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="45" selection-end-column="26" />
+          <caret line="37" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -363,19 +362,19 @@
     <entry file="file://$PROJECT_DIR$/hour_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="65" />
+          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/measure_error.py">
+    <entry file="file://$PROJECT_DIR$/qwerty.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.23674911">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.7791519">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>

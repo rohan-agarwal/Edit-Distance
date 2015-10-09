@@ -1,4 +1,5 @@
-from spellcheck import *
+from measure_error import *
+from matplotlib import pyplot as plt
 
 
 def manhattan_dist(a, b):
@@ -10,6 +11,11 @@ def manhattan_dist(a, b):
 
 
 def qwerty_levenshtein_distance(word1, word2, del_cost, ins_cost):
+    word1 = filter(lambda x: x not in '!@#$%^&*()_+-=:;<>,./?\'\"', word1)
+    word1 = word1.lower()
+    word2 = filter(lambda x: x not in '!@#$%^&*()_+-=:;<>,./?\'\"', word2)
+    word2 = word2.lower()
+
     m = len(word1)
     n = len(word2)
     d = np.zeros((m+1, n+1))
@@ -20,7 +26,9 @@ def qwerty_levenshtein_distance(word1, word2, del_cost, ins_cost):
                  'd': (2, 1), 'f': (3, 1), 'g': (4, 1), 'h': (5, 1),
                  'j': (6, 1), 'k': (7, 1), 'l': (8, 1), 'z': (0, 2),
                  'x': (1, 2), 'c': (2, 2), 'v': (3, 2), 'b': (4, 2),
-                 'n': (5, 2), 'm': (6, 2)}
+                 'n': (5, 2), 'm': (6, 2), '1': (0, -1), '2': (1, -1),
+                 '3': (2, -1), '4': (3, -1), '5': (4, -1), '6': (5, -1),
+                 '7': (6, -1), '8': (7, -1), '9': (8, -1), '0': (9, -1)}
 
     for i in range(m+1):
         d[i, 0] = i*del_cost
@@ -32,7 +40,8 @@ def qwerty_levenshtein_distance(word1, word2, del_cost, ins_cost):
             if word1[i-1] == word2[j-1]:
                 d[i, j] = d[i-1, j-1]
             else:
-                sub_cost = manhattan_dist(positions[word1[i]], positions[word2[j]])
+                sub_cost = manhattan_dist(positions[word1[i-1]],
+                                          positions[word2[j-1]])
                 d[i, j] = min(d[i-1, j] + del_cost,
                               d[i, j-1] + ins_cost,
                               d[i-1, j-1] + sub_cost)
@@ -40,10 +49,56 @@ def qwerty_levenshtein_distance(word1, word2, del_cost, ins_cost):
     return d[m, n]
 
 
-def closest_qwerty(string, dictionary):
+def closest_qwerty(string, dictionary, del_cost, ins_cost):
     distances = [1000] * len(dictionary)
     for i in range(len(dictionary)):
-        distances[i] = qwerty_levenshtein_distance(string, dictionary[i], 1, 1, 1)
+        distances[i] = qwerty_levenshtein_distance(string, dictionary[i], del_cost, ins_cost)
     val, idx = min((val, idx) for (idx, val) in enumerate(distances))
     return dictionary[idx]
 
+
+def qwerty_measure_error(typos, truewords, dictionarywords, del_cost, ins_cost):
+    matches = [0] * len(typos)
+    for i, word in enumerate(typos):
+        correction = closest_qwerty(word, dictionarywords, del_cost, ins_cost)
+        if correction != truewords[i]:
+            matches[i] = 1
+
+    error_rate = float(sum(matches))/float(len(matches))
+    return error_rate
+
+
+def qwerty_test(parameter_range, num_typos, dict_length):
+    typos, truewords, dictionarywords = get_default_data()
+    parameter_values = []
+    errors = []
+    start = time.time()
+    for i in parameter_range:
+        for j in parameter_range:
+                parameter_values.append([i, j])
+                errors.append(qwerty_measure_error(typos[0:num_typos],
+                                                   truewords[0:num_typos],
+                                                   dictionarywords[0:dict_length],
+                                                   i, j))
+    stop = time.time()
+
+    total_time = stop - start
+    val, idx = min((val, idx) for (idx, val) in enumerate(errors))
+    best_parameters = parameter_values[idx]
+
+    return total_time, best_parameters, parameter_values, errors
+
+
+def qwerty_plots(param_values, errors):
+    del_cost = [x[0] for x in param_values]
+    ins_cost = [x[1] for x in param_values]
+
+    plt.subplot(121)
+    plt.scatter(del_cost, errors)
+    plt.title('del_cost')
+    plt.subplot(122)
+    plt.scatter(ins_cost, errors)
+    plt.title('ins_cost')
+
+total_time2, best2, param_values2, errors2 = qwerty_test([0, 1, 2, 4, 8], 211, 4503)
+qwerty_plots(param_values2, errors2)
