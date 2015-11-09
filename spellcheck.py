@@ -1,7 +1,15 @@
+# ------------------------------
+# This program takes as input two files: a body of text and a dictionary
+# Every word is spell checked and a new file is returned with fixed typos
+# Typos are fixed using the Levenshtein distance algorithm
+# Note that insertion/deletion/substitution costs here are set to 1
+# ------------------------------
+
 import numpy as np
 import sys
 
 
+# Function to pull command line arguments
 def get_args():
     to_check = str(sys.argv[1])
     dictionary = str(sys.argv[2])
@@ -9,6 +17,7 @@ def get_args():
     return to_check, dictionary
 
 
+# Standard parsing of txt file into a vector of words
 def parse_txt(input_file_name):
     doc = open(input_file_name)
     text = doc.read()
@@ -16,6 +25,7 @@ def parse_txt(input_file_name):
     return words
 
 
+# Levenstein distance algorithm as given
 def levenshtein_distance(word1, word2, del_cost, ins_cost, sub_cost):
     m = len(word1)
     n = len(word2)
@@ -38,6 +48,7 @@ def levenshtein_distance(word1, word2, del_cost, ins_cost, sub_cost):
     return d[m, n]
 
 
+# Finding the closest word in the dictionary for a typo
 def find_closest_word(string, dictionary, del_cost, ins_cost, sub_cost):
     distances = [1000] * len(dictionary)
     for i in range(len(dictionary)):
@@ -46,6 +57,10 @@ def find_closest_word(string, dictionary, del_cost, ins_cost, sub_cost):
     return dictionary[idx]
 
 
+# Combining the above functions to:
+# 1) Input a document with typos
+# 2) Fix typos by finding the closest word
+# 3) Write corrected words to a file
 def spellcheck():
 
     to_check, dictionary = get_args()
@@ -54,10 +69,12 @@ def spellcheck():
 
     correct_words = [0] * len(to_check)
     for j, word in enumerate(to_check):
-        correction = find_closest_word(word, dictionary)
+        correction = find_closest_word(word, dictionary, 1, 1, 1)
         correct_words[j] = correction
 
     f = open('corrected.txt', 'w')
     for word in correct_words:
         f.write("%s " % word)
     f.close()
+
+spellcheck()

@@ -1,8 +1,15 @@
+# ------------------------------
+# This file is dedicated for use with the wikipediatypo files and the 3esl dataset
+# Here we assume that for the typos we know what the word was actually meant to be
+# Based on this, can we get a measure of how good the algorithm finds the correction
+# ------------------------------
+
 import time
 import csv
 from spellcheck import *
 
 
+# Function to parse data specifically in the format of wikipediatypo(clean).txt
 def parse_data(input_file_name):
     data = []
     with open(input_file_name) as datafile:
@@ -13,6 +20,7 @@ def parse_data(input_file_name):
     return data
 
 
+# Given that we know the "true" words for typos, what is our error in fixing typos?
 def measure_error(typos, truewords, dictionarywords, del_cost, ins_cost, sub_cost):
     matches = [0] * len(typos)
     for i, word in enumerate(typos):
@@ -24,6 +32,7 @@ def measure_error(typos, truewords, dictionarywords, del_cost, ins_cost, sub_cos
     return error_rate
 
 
+# Function to get "default" data, that is data that the code was run on
 def get_default_data():
     data = parse_data('wikipediatypoclean.txt')
     typos = [x['typo'] for x in data]
@@ -32,6 +41,8 @@ def get_default_data():
     return typos, truewords, dictionarywords
 
 
+# Measuring the time for finding errors
+# Parameters include number of typos, number of iterations, and dictionary size
 def time_measure(n, rep, dict_length):
     typos, truewords, dictionarywords = get_default_data()
     times = []

@@ -1,3 +1,9 @@
+# ------------------------------
+# Conduct a test within a one hour time frame to "tune" the "model"
+# That is, find the optimal insertion, deletion, and substitution costs
+# Plot the results as well using pyplot
+# ------------------------------
+
 from measure_error import *
 from matplotlib import pyplot as plt
 

@@ -1,7 +1,15 @@
+# ------------------------------
+# Recreation of the pipelines from spellcheck, measure_error, and hour_test
+# Using a qwerty-Levenshtein distance, which specifies substitution costs
+# Costs are determined based on distance between letters on a keyboard
+# This is implemented using a coordinate system with the 'q' key being the origin
+# ------------------------------
+
 from measure_error import *
 from matplotlib import pyplot as plt
 
 
+# Compute the manhattan distance (L1 norm) between two points
 def manhattan_dist(a, b):
     dist = 0
     for i in range(len(a)):
@@ -9,6 +17,7 @@ def manhattan_dist(a, b):
 
     return dist
 
+# qwerty-edited functions from spellcheck/measure_error/hour_test
 
 def qwerty_levenshtein_distance(word1, word2, del_cost, ins_cost):
     word1 = filter(lambda x: x not in '!@#$%^&*()_+-=:;<>,./?\'\"', word1)
